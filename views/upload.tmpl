@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload</title>
+</head>
+
+<body>
+  <input id="fileInput" type="file" name="name" />
+  <button id="uploadButton" type="button" onclick="upload()">
+    Upload
+  </button>
+</body>
+
+<script>
+  function upload() {
+    const el = document.getElementById("fileInput")
+    const file = el.files[0];
+
+    const formData = new FormData();
+    formData.append('file', file)
+
+    const xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = function () {
+    //   if (xhr.readyState === 4) {
+    //     alert(xhr.response);
+    //   }
+    // }
+    xhr.open('POST', '/file');
+    // xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+    xhr.send(formData);
+  }
+
+</script>
+
+</html>
