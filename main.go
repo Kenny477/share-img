@@ -26,7 +26,9 @@ func SetupRouter() *gin.Engine {
 		c.String(http.StatusOK, "pong")
 	})
 
+	// File upload and retrieve
 	r.POST("/file", controllers.Upload)
+	r.GET("/file/:id", controllers.Retrieve)
 
 	return r
 }

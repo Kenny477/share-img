@@ -1,9 +1,13 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"github.com/google/uuid"
+	"gorm.io/gorm"
+)
 
 type File struct {
 	gorm.Model
 	Name    string
 	Caption string
+	FileId  uuid.UUID
 }
