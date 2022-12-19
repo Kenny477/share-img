@@ -40,7 +40,6 @@ func Retrieve(c *gin.Context) {
 		c.String(http.StatusNotFound, id+" not found")
 		return
 	}
-	fmt.Println(file)
 
-	// c.String(http.StatusOK, id)
+	c.File("storage/" + file.Name)
 }

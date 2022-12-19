@@ -16,9 +16,7 @@ func SetupRouter() *gin.Engine {
 	// Test upload page
 	r.LoadHTMLGlob("views/*")
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "upload.tmpl", gin.H{
-			"title": "Main website",
-		})
+		c.HTML(http.StatusOK, "upload.tmpl", gin.H{})
 	})
 
 	// Ping test
@@ -27,8 +25,11 @@ func SetupRouter() *gin.Engine {
 	})
 
 	// File upload and retrieve
-	r.POST("/file", controllers.Upload)
-	r.GET("/file/:id", controllers.Retrieve)
+	file := r.Group("/file")
+	{
+		file.POST("/", controllers.Upload)
+		file.GET("/:id", controllers.Retrieve)
+	}
 
 	return r
 }
